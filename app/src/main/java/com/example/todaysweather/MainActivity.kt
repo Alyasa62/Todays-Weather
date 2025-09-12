@@ -11,17 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import com.example.WeatherPage
+import com.example.WeatherViewModel
 import com.example.todaysweather.ui.theme.TodaysWeatherTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         setContent {
             TodaysWeatherTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WeatherPage(
+                    WeatherPage( weatherViewModel,
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
